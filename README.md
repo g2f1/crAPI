@@ -36,7 +36,31 @@ There are two approaches to hack crAPI - the first is to look at it as a complet
 Due to time constraints, I decided to tackle the API using the second approach. The exploitation is therefore broken down into challenges, each highlighting the presence of a vulnerability from the OWASP Top 10.
 
 ## BOLA Vulnerabilities
+BOLA or Broken object level authorization is a vuln that occurs when an API does not properly verify whether the user is authorized to access a specific object or resource
 ### **Challenge 1** - Access details of another user’s vehicle
 
 We need to leak sensitive information of another user’s vehicle.
 
+![to](assets/images/login.png)
+
+After creating an account, I log in to the app to get the following page
+
+![to](assets/images/dashboard.png)
+
+I try to add vehicle, but first I need to get the vehicle details sent to my email address in the mailHog web portal running in the port 8025
+
+![to](assets/images/mail.png)
+
+By invistigating the refresh button using burpsuite, I found a call to an api that receives a vehicle GUID and returns information about it. 
+
+![to](assets/images/refresh.png)
+
+![to](assets/images/vuln1.png)
+
+My next step is to figure out how to access other users’ GUIDs. In the community section, people publish posts, and when the app fetches these posts, it calls an API that, as revealed by Burp Suite, returns extra information, including the vehicle ID
+
+![to](assets/images/vuln2.png)
+
+We manage to get sensitve informations about other user 
+
+![to](assets/images/vuln3.png)
