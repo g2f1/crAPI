@@ -11,8 +11,12 @@ For more informations check this repo by the OWASP team : [crAPI](https://github
 ## Recon
 Every Penetration testing typically begins with the reconnaissance phase. In the case of API pentest, reviewing the available documentation is often an effective starting point. Many API providers publish detailed specifications using OpenAPI to support developers and consumers. So, API documentation is frequently accessible and can offer valuable insights for testing.
 
-In the case of crAPI, I found a json file that contains an openAPI documentation for all the endpoints in the API, so I paste it in swagger editor.
+In the case of crAPI, a JSON file containing the OpenAPI documentation for all API endpoints can be found in the crAPI repository. This file can be imported into the Swagger Editor to generate a fancy documentation of the api.
 
-we got a list of all the methods used by each endpoint
+Here is a list of all available endpoints.
 
 ![to](assets/images/endpoints.png)
+
+this is all the methods associated with the authentification endpoint
+
+![to](assets/images/methods_auth.png)
