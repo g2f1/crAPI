@@ -64,3 +64,14 @@ My next step is to figure out how to access other users’ GUIDs. In the communi
 We manage to get sensitve informations about other users' car
 
 ![to](assets/images/vuln3.png)
+
+### **Challenge 2** - Access mechanic reports of other users
+
+crAPI allows vehicle owners to contact their mechanics by submitting a “contact mechanic” form. The goal is to access others' reports.
+
+When attempting to submit a report, a POST request is made to the /workshop/api/merchant/contact_mechanic endpoint, with all the report details included in the request body. The interesting part lies in the response, which contains a link to the submitted report along with its ID. I then sent a request to this endpoint using id=2 which give me access to report of other user.
+
+![to](assets/images/report.png)
+
+![to](assets/images/report2.png)
+
