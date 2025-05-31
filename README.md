@@ -17,6 +17,6 @@ Here is a list of all available endpoints.
 
 ![to](assets/images/endpoints.png)
 
-this is all the methods associated with the authentification endpoint
+This is all the methods associated with the auth endpoint
 
 ![to](assets/images/methods_auth.png)
