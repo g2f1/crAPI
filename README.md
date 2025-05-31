@@ -7,7 +7,7 @@ For more informations check this repo by the OWASP team : [crAPI](https://github
 
 >After completing my preparation for the ACP certification, I started looking for a vulnerable application to test the knowledge I had acquired before taking the exam.
 >Fortunately, I came across crAPI, which helped me a lot by allowing me to practice in real-world scenarios.
-# 
+# The Action
 ## Recon
 Every Penetration testing typically begins with the reconnaissance phase. In the case of API pentest, reviewing the available documentation is often an effective starting point. Many API providers publish detailed specifications using OpenAPI to support developers and consumers. So, API documentation is frequently accessible and can offer valuable insights for testing.
 
@@ -21,8 +21,10 @@ This is all the methods associated with the auth endpoint
 
 ![to](assets/images/methods_auth.png)
 
-Wd can also have the params and response format
+The documentation also includes detailed information on parameter formats and response codes.
 
 ![to](assets/images/param_auth.png)
 
 ![to](assets/images/response_auth.png)
+
+We’ll refer to this documentation at different stages during the API's exploitation
