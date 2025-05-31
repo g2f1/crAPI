@@ -21,10 +21,22 @@ This is all the methods associated with the auth endpoint
 
 ![to](assets/images/methods_auth.png)
 
-The documentation also includes detailed information on parameter formats and response codes.
+The documentation also includes detailed information on request and response formats.
 
 ![to](assets/images/param_auth.png)
 
 ![to](assets/images/response_auth.png)
 
 We’ll refer to this documentation at different stages during the API's exploitation
+
+# Challenges
+
+There are two approaches to hack crAPI - the first is to look at it as a complete black box test, where you get no directions, but just try to understand the app from scratch and hack it. The second approach is using this page, which will give you an idea about which vulnerabilities exist in crAPI and will direct you on how to exploit them.
+
+Due to time constraints, I decided to tackle the API using the second approach. The exploitation is therefore broken down into challenges, each highlighting the presence of a vulnerability from the OWASP Top 10.
+
+## BOLA Vulnerabilities
+### **Challenge 1** - Access details of another user’s vehicle
+
+We need to leak sensitive information of another user’s vehicle.
+
