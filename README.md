@@ -14,3 +14,5 @@ Every Penetration testing typically begins with the reconnaissance phase. In the
 In the case of crAPI, I found a json file that contains an openAPI documentation for all the endpoints in the API, so I paste it in swagger editor.
 
 we got a list of all the methods used by each endpoint
+
+![to](assets/images/endpoints.png)
