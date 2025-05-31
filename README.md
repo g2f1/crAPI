@@ -51,7 +51,7 @@ I try to add vehicle, but first I need to get the vehicle details sent to my ema
 
 ![to](assets/images/mail.png)
 
-By invistigating the refresh button using burpsuite, I found a call to an api that receives a vehicle GUID and returns information about it. 
+After adding the vehicle, I notice a refresh button by inspecting it using burpsuite, I found a call to an api that receives a vehicle GUID and returns information about it. 
 
 ![to](assets/images/refresh.png)
 
@@ -61,6 +61,6 @@ My next step is to figure out how to access other users’ GUIDs. In the communi
 
 ![to](assets/images/vuln2.png)
 
-We manage to get sensitve informations about other user 
+We manage to get sensitve informations about other users' car
 
 ![to](assets/images/vuln3.png)
