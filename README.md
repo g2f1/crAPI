@@ -20,3 +20,9 @@ Here is a list of all available endpoints.
 This is all the methods associated with the auth endpoint
 
 ![to](assets/images/methods_auth.png)
+
+Wd can also have the params and response format
+
+![to](assets/images/param_auth.png)
+
+![to](assets/images/response_auth.png)
