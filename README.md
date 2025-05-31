@@ -6,7 +6,6 @@ crAPI can be tested using docker, vagrant or other deployement options.
 For more informations check this repo by the OWASP team : [crAPI](https://github.com/OWASP/crAPI)
 
 >After completing my preparation for the ACP certification, I started looking for a vulnerable application to test the knowledge I had acquired before taking the exam.
->
 >Fortunately, I came across crAPI, which helped me a lot by allowing me to practice in real-world scenarios.
 # 
 ## Recon
