@@ -99,3 +99,17 @@ I initially attempted to brute-force the OTP, but the application seemed to rest
 ![to](assets/images/auth3.png)
 
 ![to](assets/images/auth4.png)
+
+## Excessive Data Exposure
+
+Excessive data exposure occurs when APIs expose all object properties to API calls rather than what the user needs to act on without considering the object’s sensitivity level.
+
+### **Challenge 4** - Find an API endpoint that leaks sensitive information of other users
+
+The goal is to find an API endpoint that reveals more informations than it should. I remember that I previously used the API endpoint that fetches post data to retrieve the carID. This makes it the likely vulnerable API, as it exposes more information than what the user actually needs.
+
+![to](assets/images/excessive.png)
+
+### **Challenge 5** - Find an API endpoint that leaks an internal property of a video
+
+Every user 
