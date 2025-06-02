@@ -75,3 +75,23 @@ When attempting to submit a report, a POST request is made to the /workshop/api/
 
 ![to](assets/images/report2.png)
 
+## Broken User Authentication
+
+It refers to vulnerabilities that allow attackers to compromise authentication mechanisms, enabling them to impersonate users or gain unauthorized access. This can happen due to issues like:
+- Weak or missing authentication checks
+- Poor session management
+- Insecure token handling
+
+### **Challenge 3** - Reset the password of a different user
+
+In this challenge we need to find an endpoint that make users change their password.
+
+On the login page, there is a feature that allows users to reset their password using their email address. However, the issue is that the application does not require re-authentication when users attempt to change their current password. I used a previously discovered email address to initiate a password reset. When doing so, the application prompts for a one-time password (OTP) sent to the owner's email.
+
+![to](assets/images/auth1.png)
+
+After that the app make a call to /identity/api/auth/v3/check-otp with the otp, email and new password in the body of the request.
+
+![to](assets/images/auth2.png)
+
+I attempted to brute-force the OTP, but the application appears to restrict the number of attempts. After 
