@@ -1,5 +1,5 @@
 # What is crAPI?
-crAPI (Completely Ridiculous API) defines an API which is intentionally vulnerable to the OWASP API Top 10 vulnerabilities. It simulates an API-driven, microservice-based web application that is a platform for vehicle owners. 
+crAPI (Completely Ridiculous API) defines an API which is intentionally vulnerable to the OWASP API Top 10 vulnerabilities. It simulates an API-driven, microservice-based web application that is a platform for vehicle owners. All the challenges in crAPI are based on real-life vulnerabilities that were found in APIs of big companies like Facebook, Uber, and Shopify.
 
 crAPI can be tested using docker, vagrant or other deployement options.
 
@@ -90,8 +90,12 @@ On the login page, there is a feature that allows users to reset their password 
 
 ![to](assets/images/auth1.png)
 
-After that the app make a call to /identity/api/auth/v3/check-otp with the otp, email and new password in the body of the request.
+After that the app make a call to /identity/api/auth/v3/check-otp with the OTP, email and new password in the body of the request.
 
 ![to](assets/images/auth2.png)
 
-I attempted to brute-force the OTP, but the application appears to restrict the number of attempts. After 
+I initially attempted to brute-force the OTP, but the application seemed to restrict the number of attempts. So, I decided to check the documentation and discovered that there is a version 2 of the endpoint that verifies the OTP. I then tried the brute-force attack again using this new endpoint, and it worked.
+
+![to](assets/images/auth3.png)
+
+![to](assets/images/auth4.png)
