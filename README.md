@@ -115,3 +115,15 @@ The goal is to find an API endpoint that reveals more informations than it shoul
 Every user can add a video to their profile. When a user uploads a video, an API call is made to /identity/api/v2/user/videos. The response includes the video’s ID, name, and data. However, the most interesting part is the conversion_params field, which contains the value "-v codec h264". This is sensitive information that should not be exposed to the user, as it reveals internal configuration details about how the server processes uploaded video content.
 
 ![to](assets/images/excessive2.png)
+
+## Rate Limiting
+
+### **Challenge 6** - Perform a layer 7 DoS using ‘contact mechanic’ feature
+
+When submitting a report to a mechanic using the 'Contact Mechanic' feature, a POST request is sent to /workshop/api/merchant/contact_mechanic with the following value in the request body.
+
+![to](assets/images/dos.png)
+
+I changed the value of "repeat_request_if_failed" to true and the value of "number_of_repeats" to 1000, which successfully resulted in an application-level DoS attack.
+
+![to](assets/images/dos1.png)
