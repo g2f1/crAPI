@@ -116,7 +116,9 @@ Every user can add a video to their profile. When a user uploads a video, an API
 
 ![to](assets/images/excessive2.png)
 
-## Rate Limiting
+## Unrestricted Resource Consumption
+
+This vulnerability occurs when an API allows excessive use of its resources such as CPU, memory, bandwidth, or database connections without imposing limits like rate limiting, Maximum allocable memory, Maximum upload file size, Execution timeouts ...
 
 ### **Challenge 6** - Perform a layer 7 DoS using ‘contact mechanic’ feature
 
@@ -124,6 +126,61 @@ When submitting a report to a mechanic using the 'Contact Mechanic' feature, a P
 
 ![to](assets/images/dos.png)
 
-I changed the value of "repeat_request_if_failed" to true and the value of "number_of_repeats" to 1000, which successfully resulted in an application-level DoS attack.
+It appears that the api endpoint don't impose limits in the number of time we can call this api. So I changed the value of "repeat_request_if_failed" to true and the value of "number_of_repeats" to 1000, which successfully resulted in an application-level DoS attack.
 
 ![to](assets/images/dos1.png)
+
+## BFLA
+
+Broken funcion level authorization is a type of access control vulnerability that occurs when an application fails to properly enforce authorization checks at the level of specific functions or endpoints. This allows authenticated users to access functionality that they should not be allowed to use
+
+### **challenge 7** - Delete a video of another user
+
+When changing the name of the video the app made made a call to /identity/api/v2/user/videos/6 with PUT method, with 6 is the id of my own video. after further investigation i found that the the endpoint accept the method DELETE but i can't use it since I'm not the admin
+
+![to](assets/images/bfla.png)
+
+Changing user to admin in the path of the end point succesefuly delete the video of other user 
+
+![to](assets/images/bfla2.png)
+
+## Mass Assignment
+
+This vulnerability arises when a user can alter object properties that are meant to be restricted.
+
+### **challenge 8** - Get an item for free
+In the crAPI application, users are given an initial balance of $100, which can be used to purchase items such as wheels or seats. After purchasing an item, it is possible to return it and receive a refund.
+To test this functionality, I started by purchasing a wheel for $10 and then initiated a return. The item then appeared with the status "return pending".
+
+![to](assets/images/mass.png)
+
+We can see our order details using the order details button, the latter made a call to /workshop/api/shop/orders/6 using the get method, and it returns a lot of information about the product and the payment method.
+
+![to](assets/images/mass1.png)
+
+There is a status property that indicates whether the product has been returned or is still pending. Since we're looking for a mass assignment vulnerability, we might be able to exploit this by modifying the value of this property. If successful, this could trick the system into issuing a refund even though the product hasn’t been returned, effectively allowing us to obtain the item for free.
+
+To proceed, I need to identify the endpoint that allows modification of this property.
+I begin by sending an OPTIONS request to /workshop/api/shop/orders/6 to discover which HTTP methods are supported by this endpoint.
+
+![to](assets/images/mass2.png)
+We can use the PUT method to modify the value of the status property. However, the challenge is that I don’t know the exact value that should be assigned to trigger a refund. To test this, I tried setting the property to "return returned", and in response, the server returned a list of all valid values that the status property can take.
+
+![to](assets/images/mass3.png)
+
+Finally, I was able to successfully change the product's status and obtain an item without paying for it.
+
+![to](assets/images/mass4.png)
+
+###**Challenge 9** - Increase your balance by $1,000 or more
+
+I will use the same endpoint as in the previous challenge, but this time I will modify a different property: the product’s quantity.
+By doing so, I tricked the system into believing that I had purchased 100 wheels at $10 each, and then returned them all. As a result, the system issued a $1,000 refund.
+
+![to](assets/images/mass5.png)
+
+###**Challenge 10** - Update internal video properties
+
+In Challenge 5, I discovered that the application exposes an internal property of the video object, conversion_params. Through the endpoint /identity/api/v2/user/videos/6. By leveraging this, I was able to modify the video compression standard from h264 to h265.
+
+![to](assets/images/mass6.png)
