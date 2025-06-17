@@ -112,6 +112,6 @@ The goal is to find an API endpoint that reveals more informations than it shoul
 
 ### **Challenge 5** - Find an API endpoint that leaks an internal property of a video
 
-Every user can add a video to their profile. When a user uploads a video, an API call is made to /identity/api/v2/user/videos. The response includes the video’s ID, name, and data. However, the most interesting—and concerning—part is the conversion_params field, which contains the value "-v codec h264". This is sensitive information that should not be exposed to the user, as it reveals internal configuration details about how the server processes uploaded video content.
+Every user can add a video to their profile. When a user uploads a video, an API call is made to /identity/api/v2/user/videos. The response includes the video’s ID, name, and data. However, the most interesting part is the conversion_params field, which contains the value "-v codec h264". This is sensitive information that should not be exposed to the user, as it reveals internal configuration details about how the server processes uploaded video content.
 
 ![to](assets/images/excessive2.png)
