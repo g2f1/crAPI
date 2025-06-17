@@ -172,14 +172,14 @@ Finally, I was able to successfully change the product's status and obtain an it
 
 ![to](assets/images/mass4.png)
 
-###**Challenge 9** - Increase your balance by $1,000 or more
+### **Challenge 9** - Increase your balance by $1,000 or more
 
 I will use the same endpoint as in the previous challenge, but this time I will modify a different property: the product’s quantity.
 By doing so, I tricked the system into believing that I had purchased 100 wheels at $10 each, and then returned them all. As a result, the system issued a $1,000 refund.
 
 ![to](assets/images/mass5.png)
 
-###**Challenge 10** - Update internal video properties
+### **Challenge 10** - Update internal video properties
 
 In Challenge 5, I discovered that the application exposes an internal property of the video object, conversion_params. Through the endpoint /identity/api/v2/user/videos/6. By leveraging this, I was able to modify the video compression standard from h264 to h265.
 
