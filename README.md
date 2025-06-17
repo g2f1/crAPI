@@ -174,7 +174,7 @@ Finally, I was able to successfully change the product's status and obtain an it
 
 ### **Challenge 9** - Increase your balance by $1,000 or more
 
-I will use the same endpoint as in the previous challenge, but this time I will modify a different property: the product’s quantity.
+I will use the same endpoint as in the previous challenge, but this time along with the status property I will modify the product’s quantity also.
 By doing so, I tricked the system into believing that I had purchased 100 wheels at $10 each, and then returned them all. As a result, the system issued a $1,000 refund.
 
 ![to](assets/images/mass5.png)
