@@ -198,3 +198,26 @@ When submitting a report to a mechanic, the application sends a POST request to 
 So if we put any URL we want, the API will fetch the resource and return the result for us. I tried using "www.google.com" and managed to get a response.
 
 ![to](assets/images/ssrf1.png)
+
+## NoSQL Injection
+
+### **Challenge 12** - Find a way to get free coupons without knowing the coupon code.
+
+In the application, users can use a coupon to claim money 
+
+![to](assets/images/nosql.png)
+
+Usning the fact that the application is vulnerable to nosql injection, I try different payloads and i successefuly retrieve the coupon code 
+
+![to](assets/images/nosql1.png)
+
+## SQL Injection 
+
+### **Challenge 13** - Find a way to redeem a coupon that you have already claimed by modifying the database
+
+After I claimed the coupon and try to reuse it, I got a 400 http code telling me that that the coupon is already claimed 
+
+![to](assets/images/nosql1.png)
+
+Using a simple sql injection payload I manage to get a 200 htpp code and reusing the coupon
+
