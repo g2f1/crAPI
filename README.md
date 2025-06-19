@@ -181,6 +181,20 @@ By doing so, I tricked the system into believing that I had purchased 100 wheels
 
 ### **Challenge 10** - Update internal video properties
 
-In Challenge 5, I discovered that the application exposes an internal property of the video object, conversion_params. Through the endpoint /identity/api/v2/user/videos/6. By leveraging this, I was able to modify the video compression standard from h264 to h265.
+In Challenge 5, I discovered that the application exposes an internal property of the video object, conversion_params through the endpoint /identity/api/v2/user/videos/6. By leveraging this, I was able to modify the video compression standard from h264 to h265.
 
 ![to](assets/images/mass6.png)
+
+## SSRF
+
+Server-side request forgery is a vulnerability that allows an attacker to cause an API to make requests to an unintended location.  It enables an attacker to coerce the application to send a crafted request to an unexpected destination, even when protected by a firewall or a VPN.
+
+### **Challenge 11** - Make crAPI send an HTTP call to "www.google.com" and return the HTTP response.
+
+When submitting a report to a mechanic, the application sends a POST request to the endpoint /workshop/api/merchant/contact_mechanic, including parameters such as the problem description. What’s more interesting, however, is the mechanic_api parameter, which contains a URL pointing to another API. This secondary API receives the report details, stores them, and responds with additional information like an ID and a link to the newly created resource.
+
+![to](assets/images/ssrf.png)
+
+So if we put any URL we want, the API will fetch the resource and return the result for us. I tried using "www.google.com" and managed to get a response.
+
+![to](assets/images/ssrf1.png)
