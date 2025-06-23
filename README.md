@@ -215,9 +215,18 @@ Usning the fact that the application is vulnerable to nosql injection, I try dif
 
 ### **Challenge 13** - Find a way to redeem a coupon that you have already claimed by modifying the database
 
-After I claimed the coupon and try to reuse it, I got a 400 http code telling me that that the coupon is already claimed 
+When I try to reclaim the coupon, I got a message telling me that that the coupon is already claimed 
 
-![to](assets/images/nosql1.png)
+![to](assets/images/sql.png)
 
-Using a simple sql injection payload I manage to get a 200 htpp code and reusing the coupon
+The application uses two API endpoints in the process of claiming a coupon code. The first endpoint (/community/api/v2/coupon/validate-coupon) checks whether the code is valid by querying a NoSQL database. The second endpoint (/workshop/api/shop/apply_coupon) verifies that the coupon has not already been claimed, using an SQL database.
 
+The challenge asks us to redeem the coupon we already redeem, which requires exploiting SQL injection to bypass the check and successfully reclaim the code.
+
+The application send a POST request to /workshop/api/shop/apply_coupon with two parameters: coupon_code and amount. I tried some payloads and it seems that the application uses postgresql.
+
+![to](assets/images/sql4.png)
+
+At this point I copy the request in a file and I use sqlmap for further inspection. First I use the following command: ```sqlmap -r crapi.rq --dbs``` to detect all databases
+
+![to](assets/images/sql4.png)
