@@ -229,9 +229,11 @@ The application send a POST request to /workshop/api/shop/apply_coupon with two 
 
 At this point, I saved the request to a file and used sqlmap for deeper analysis. I started with the following command to enumerate all available databases:```sqlmap -r crapi.rq --dbs```
 
-![to](assets/images/sql4.png)
+![to](assets/images/sql6.png)
 
-I inspect the tables that exist in the public database 
+Sqlmap reports that public is a database, but in reality, it's a schema within the crapi database, which is the current active database.
+
+This is all tables that exist in the public schema
 
 ![to](assets/images/sql3.png)
 
@@ -242,6 +244,8 @@ What caught my interest was the applied_coupon table, so I decided to dump its c
 What’s happening is that the application checks if there's an entry for the current user ID in the applied_coupon table. If such an entry exists, it means the user has already claimed the coupon and cannot use it again. So To reuse the coupon, I simply need to delete the corresponding entry for my user ID from this table, effectively resetting the usage status.
 
 ![to](assets/images/sql8.png)
+
+And I finally manage to reuse my coupon.
 
 ![to](assets/images/sql9.png)
 
