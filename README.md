@@ -233,11 +233,11 @@ At this point, I saved the request to a file and used sqlmap for deeper analysis
 
 Sqlmap reports that public is a database, but in reality, it's a schema within the crapi database, which is the current active database.
 
-This is all tables that exist in the public schema
+This is all tables that exist in the public schema (```sqlmap -r crapi.rq -D public --tables```)
 
 ![to](assets/images/sql3.png)
 
-What caught my interest was the applied_coupon table, so I decided to dump its contents.
+What caught my interest was the applied_coupon table, so I decided to dump its contents. (```sqlmap -r crapi.rq -T applied_coupon --dump```
 
 ![to](assets/images/sql7.png)
 
