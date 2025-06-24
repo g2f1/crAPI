@@ -249,6 +249,18 @@ And I finally manage to reuse my coupon.
 
 ![to](assets/images/sql9.png)
 
+## Unauthenticated Access
 
+# **Challenge 14** - Find an endpoint that does not perform authentication checks for a user.
+
+This challlenge very easy, We just need to test all the enpoint untill we find one that still give us a response without authenticate our self using the jwt token
+
+Non vulnerbale enpoint give us the following response when trying to access it without any authentification
+
+![to](assets/images/2auth.png)
+
+After several tries I found the vulnerable enpoint
+
+![to](assets/images/2auth1.png)
 
 
