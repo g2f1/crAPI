@@ -251,7 +251,7 @@ And I finally manage to reuse my coupon.
 
 ## Unauthenticated Access
 
-# **Challenge 14** - Find an endpoint that does not perform authentication checks for a user.
+### **Challenge 14** - Find an endpoint that does not perform authentication checks for a user.
 
 This challenge is quite easy. We simply need to test all the endpoints until we find one that still responds without requiring us to authenticate.
 
@@ -265,4 +265,11 @@ After several tries I found the vulnerable enpoint
 
 ## JWT Vulnerabilities
 
+JSON web tokens (JWTs) are a standardized format for sending cryptographically signed JSON data between systems. They can theoretically contain any kind of data, but are most commonly used to send information ("claims") about users as part of authentication, session handling, and access control mechanisms. 
+
 ### **Challenge 15** - Find a way to forge valid JWT Tokens
+
+In this challenge we need to forge a valid token. The application is vulnerable to various attacks. We will try some of them in order to get full access to the application
+
+- Accepting arbitrary signatures
+  Developers often decodes the content of the token without validating the signature. This effectively means that the signature doesn't matter at all, so basically we don't need to add a valid one 
