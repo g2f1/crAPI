@@ -269,11 +269,34 @@ JSON web tokens (JWTs) are a standardized format for sending cryptographically s
 
 ### **Challenge 15** - Find a way to forge valid JWT Tokens
 
-In this challenge, we need to forge a valid token to gain access. The application is vulnerable to several common JWT-related attacks, and we will attempt some of them to escalate our privileges.
+In this challenge, we need to forge a valid token to gain access. The application is vulnerable to several common JWT-related attacks, and we will attempt some of them to gain unauthorized access.
 
 - Accepting arbitrary signatures
   
-In some cases, developers decode the content of a JWT without properly verifying its signature. When this happens, the signature becomes irrelevant — any value is accepted. Taking advantage of this, I crafted a token with a fake signature (g2f1) and was able to successfully access the dashboard.
+In some cases, developers decode the content of a JWT without properly verifying its signature. When this happens, the signature becomes irrelevant and any value is accepted. Taking advantage of this, I crafted a token with a fake signature (g2f1) and was able to successfully access a dashboard of another user through /identity/api/v2/user/dashboard enpoint.
 
 ![to](assets/images/jwt.png)
 
+I went to test /workshop/api/shop/products enpoint. I try the same trick but i got an "invalid jwt token" response. 
+
+![to](assets/images/jwt2.png)
+
+I try injecting self-signed JWTs via the kid parameter
+
+![to](assets/images/jwt4.png)
+
+What I essentially did was sign the token using the HS256 algorithm, with a null byte (AA==, which decodes to 0x00) as the secret key. Then, I exploited a path traversal vulnerability via the kid parameter to trick the server into loading /dev/null as the key file.
+
+![to](assets/images/jwt5.png)
+
+But we still get the invalid token response, so maybe the enpoint isn't vulnerable o this attack
+
+I then proceeded to test injecting self-signed JWTs using the jwk header parameter(A JWK (JSON Web Key) is a standardized format for representing keys as a JSON object). To do this, I used key pair from ```https://token.dev/jwks/keys.json```, crafted a JWT token, and included the jwk field in the header with the public key informations. I then signed the token using the corresponding private key.
+
+![to](assets/images/jwt7.png)
+
+But unfortuntly I didn't get anything
+
+![to](assets/images/jwt8.png)
+
+After several attempts with other endpoints that yielded no results, I decided to stop and move on to something else.
