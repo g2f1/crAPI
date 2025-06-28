@@ -269,7 +269,11 @@ JSON web tokens (JWTs) are a standardized format for sending cryptographically s
 
 ### **Challenge 15** - Find a way to forge valid JWT Tokens
 
-In this challenge we need to forge a valid token. The application is vulnerable to various attacks. We will try some of them in order to get full access to the application
+In this challenge, we need to forge a valid token to gain access. The application is vulnerable to several common JWT-related attacks, and we will attempt some of them to escalate our privileges.
 
 - Accepting arbitrary signatures
-  Developers often decodes the content of the token without validating the signature. This effectively means that the signature doesn't matter at all, so basically we don't need to add a valid one 
+  
+In some cases, developers decode the content of a JWT without properly verifying its signature. When this happens, the signature becomes irrelevant — any value is accepted. Taking advantage of this, I crafted a token with a fake signature (g2f1) and was able to successfully access the dashboard.
+
+![to](assets/images/jwt.png)
+
